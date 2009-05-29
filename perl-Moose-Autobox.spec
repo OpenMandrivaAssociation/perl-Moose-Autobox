@@ -11,6 +11,7 @@ Group:      Development/Perl
 Url:        http://search.cpan.org/dist/%{upstream_name}
 Source0:    http://www.cpan.org/modules/by-module/Moose/%{upstream_name}-%{upstream_version}.tar.gz
 
+BuildRequires: perl(autobox)
 BuildRequires: perl(Moose)
 BuildRequires: perl(Perl6::Junction)
 BuildRequires: perl(Test::Exception)
