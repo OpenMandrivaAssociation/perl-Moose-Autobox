@@ -3,7 +3,7 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 1
+Release:    %mkrel 2
 
 Summary:    The Indexed role
 License:    GPL+ or Artistic
@@ -17,6 +17,7 @@ BuildRequires: perl(Perl6::Junction)
 BuildRequires: perl(Test::Exception)
 BuildArch: noarch
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
+Requires: perl(autobox)
 
 %description
 Moose::Autobox provides an implementation of SCALAR, ARRAY, HASH & CODE for
