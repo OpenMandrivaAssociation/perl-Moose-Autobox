@@ -1,23 +1,23 @@
 %define upstream_name    Moose-Autobox
 %define upstream_version 0.11
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    The Indexed role
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Moose/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	The Indexed role
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Moose/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(autobox)
-BuildRequires: perl(Moose)
-BuildRequires: perl(Perl6::Junction)
-BuildRequires: perl(Test::Exception)
-BuildArch: noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
-Requires: perl(autobox)
+BuildRequires:	perl-devel
+BuildRequires:	perl(autobox)
+BuildRequires:	perl(Moose)
+BuildRequires:	perl(Perl6::Junction)
+BuildRequires:	perl(Test::Exception)
+BuildArch:	noarch
+Requires:	perl(autobox)
 
 %description
 Moose::Autobox provides an implementation of SCALAR, ARRAY, HASH & CODE for
@@ -47,23 +47,44 @@ Is this for real? or just play?
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes README
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
 
+%changelog
+* Mon Apr 18 2011 Funda Wang <fwang@mandriva.org> 0.110.0-2mdv2011.0
++ Revision: 655060
+- rebuild for updated spec-helper
+
+* Mon Apr 26 2010 Jérôme Quelin <jquelin@mandriva.org> 0.110.0-1mdv2011.0
++ Revision: 539086
+- update to 0.11
+
+* Fri Nov 06 2009 Jérôme Quelin <jquelin@mandriva.org> 0.100.0-1mdv2010.1
++ Revision: 460764
+- update to 0.10
+
+* Sun Jun 07 2009 Jérôme Quelin <jquelin@mandriva.org> 0.90.0-2mdv2010.0
++ Revision: 383744
+- adding missing provides: stripped by rpm
+
+* Fri May 29 2009 Jérôme Quelin <jquelin@mandriva.org> 0.90.0-1mdv2010.0
++ Revision: 381061
+- adding missing buildrequires:
+- adding missing buildrequires:
+- import perl-Moose-Autobox
+
+
+* Fri May 29 2009 cpan2dist 0.09-1mdv
+- initial mdv release, generated with cpan2dist
 
